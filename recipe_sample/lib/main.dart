@@ -21,34 +21,36 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Padding titleSection =  Padding(
+    Padding titleSection = Padding(
       padding: const EdgeInsets.all(24),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           const Text("아보카도 양파볶음",
-              style:
-              TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
           Text("아보카도와 양파가 만나 영양소가 두 배!",
               style: TextStyle(fontSize: 16, color: Colors.grey[800]))
         ],
       ),
     );
     Row iconSection = Row(
-      mainAxisAlignment: MainAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        Icon(Icons.people, color: Colors.grey,),
-        Container(
-          margin: const EdgeInsets.only(left: 4),
-          child: Text(
-            "4인분",
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w400,
-              color: Colors.grey,
-            ),
-          ),
-        )
+        buildIconRow(
+          Icons.people,
+          '4인분',
+          Colors.grey,
+        ),
+        buildIconRow(
+          Icons.alarm,
+          '15분 이내',
+          Colors.grey,
+        ),
+        buildIconRow(
+          Icons.star,
+          '아무나',
+          Colors.grey,
+        ),
       ],
     );
 
@@ -59,10 +61,35 @@ class MyHomePage extends StatelessWidget {
       body: Column(
         children: [
           Image.asset('assets/image01.png'),
-         titleSection,
+          titleSection,
           iconSection,
         ],
       ),
     );
+  }
+
+  Row buildIconRow(
+      IconData icon, String label, Color color
+      ) {
+    return Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Icon(
+            icon,
+            color: color,
+          ),
+          Container(
+            margin: const EdgeInsets.only(left: 4),
+            child: Text(
+              label,
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w400,
+                color: Colors.grey,
+              ),
+            ),
+          )
+        ],
+      );
   }
 }
