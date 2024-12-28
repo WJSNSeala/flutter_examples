@@ -1,4 +1,8 @@
+import "package:carousel_slider/carousel_slider.dart";
 import "package:flutter/material.dart";
+import "package:twosome_cafe/widgets/today_menu_widget.dart";
+
+import "../../widgets/banner_widget.dart";
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -12,37 +16,47 @@ class HomeScreen extends StatelessWidget {
       "케이크",
     ];
 
+    List<String> bannerItemImgUrl = [
+      "assets/images/banner01.jpg",
+      "assets/images/banner02.jpg",
+    ];
+
     return DefaultTabController(
-        length: menuItems.length,
-        child: Scaffold(
-          appBar: AppBar(
-            title: Text("메뉴", style: TextStyle(color: Colors.black),),
-            centerTitle: true,
-            backgroundColor: Colors.white,
-            leading: Icon(
-              Icons.home,
-              color: Colors.grey,
-            ),
-            bottom: TabBar(
-                tabs: List.generate(
-                    menuItems.length, (index) => Tab(text: menuItems[index])),
-                unselectedLabelColor: Colors.black38,
-              labelColor: Colors.black,
-              indicatorColor: Colors.black,
-              indicatorSize: TabBarIndicatorSize.label,
-              isScrollable: true,
-            ),
-
-
+      length: menuItems.length,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(
+            "메뉴",
+            style: TextStyle(color: Colors.black),
           ),
-          body: TabBarView(children: [
-            Center(child: Text("New 화면")),
-            Center(child: Text("커피&음료 화면")),
-            Center(child: Text("빙수&아이스크림 화면")),
-            Center(child: Text("케이크 화면")),
-          ]),
+          centerTitle: true,
+          backgroundColor: Colors.white,
+          leading: Icon(
+            Icons.home,
+            color: Colors.grey,
+          ),
+          bottom: TabBar(
+            tabs: List.generate(
+                menuItems.length, (index) => Tab(text: menuItems[index])),
+            unselectedLabelColor: Colors.black38,
+            labelColor: Colors.black,
+            indicatorColor: Colors.black,
+            indicatorSize: TabBarIndicatorSize.label,
+            isScrollable: true,
+          ),
         ),
-
+        body: TabBarView(children: [
+          Column(
+            children: [
+              BannerWidget(bannerItemImgUrl: bannerItemImgUrl),
+              TodayMenuWidget(),
+            ],
+          ),
+          Center(child: Text("커피&음료 화면")),
+          Center(child: Text("빙수&아이스크림 화면")),
+          Center(child: Text("케이크 화면")),
+        ]),
+      ),
     );
   }
 }
