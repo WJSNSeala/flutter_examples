@@ -1,5 +1,6 @@
 import "package:carousel_slider/carousel_slider.dart";
 import "package:flutter/material.dart";
+import "package:twosome_cafe/screens/menu/coffee_menu_screen.dart";
 import "package:twosome_cafe/widgets/today_menu_widget.dart";
 
 import "../../widgets/banner_widget.dart";
@@ -52,7 +53,7 @@ class HomeScreen extends StatelessWidget {
               TodayMenuWidget(),
             ],
           ),
-          Center(child: Text("커피&음료 화면")),
+          CoffeeMenuScreen(),
           Center(child: Text("빙수&아이스크림 화면")),
           Center(child: Text("케이크 화면")),
         ]),
